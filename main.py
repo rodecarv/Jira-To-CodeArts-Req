@@ -118,15 +118,19 @@ class TemplateController:
                     current_data.update({'Type' : self.jira.data_jira[i][j]})
             
             self.final.data_codearts[index] = current_data
-
         
-
-
-def new_table(file_name:str):
-    # with open(file_name, mode='w') as file:
-    #     # Creating a csv writer object.
-    #     csvwriter = csv.writer(file)
-    pass
+        # Escrever no arquivo final.
+        fieldnames = self.final.header
+        with open(self.final.codearts_file, mode='w', newline='') as final_file:
+            csvwriter = csv.writer(final_file)
+            csvwriter.writerow(fieldnames)
+            
+            for i in self.final.data_codearts:
+                row = []
+                for j in self.final.data_codearts[i]:
+                    row.append(self.final.data_codearts[i][j])
+                csvwriter.writerow(row)
+            
 
 
 if __name__ == '__main__':
