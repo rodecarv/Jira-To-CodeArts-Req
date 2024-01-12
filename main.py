@@ -80,7 +80,7 @@ class CodeArtsTemplate:
                     current_line.update({head : i[index]})
                 self.data_codearts[data.index(i)] = current_line
 
-    def show_pretty_data():
+    def show_pretty_data(self):
         for i in codearts.data_codearts:
             print(f'\n{i}')
             # j == header
