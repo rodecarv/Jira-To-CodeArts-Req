@@ -1,0 +1,7 @@
+﻿ID,Title,Closed On,Status,Handler,Planned Start Date,Planned Delivery Date,Priority,Created On,Actual,DoneRatio,Type,Updated On,Developer,Notify,Author,Order,Version,Detected Version,Expected,env,Severity,StoryPoint,Module,ParentSubject,Parent Work Item ID,Tag,Domain,Sprint,Description
+61948100,TITLE2,,New,hwstaff_intl_R50032519,"Jan 09, 2024","Jan 10, 2024",Low,"Jan 09, 2024 15:12:26 GMT-03:00",0.00,0%,Task,"Jan 09, 2024 15:12:26 GMT-03:00",hwstaff_intl_R50032519,hwstaff_intl_R50032519,hwstaff_intl_R50032519,1,,,0.00,,Minor,,,,,TAG2 ,Usability,," As a <user role>
+ I want <results>
+ So that <purposes> "
+61948098,TITLE1,,New,hwstaff_intl_R50032519,"Jan 09, 2024","Jan 10, 2024",Low,"Jan 09, 2024 15:11:13 GMT-03:00",0.00,0%,Task,"Jan 09, 2024 15:11:13 GMT-03:00",hwstaff_intl_R50032519,hwstaff_intl_R50032519,hwstaff_intl_R50032519,1,,,0.00,,Minor,,,,,TAG1 ,Usability,," As a <user role> USER1
+ I want <results> I WANT1
+ So that <purposes> SO THAT1"
