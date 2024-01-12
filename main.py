@@ -57,7 +57,7 @@ class CodeArtsTemplate:
     def __repr__(self):
         return f"""JiraTemplate(
             header = {self.header} ;
-            data_codearts = {self.data_jira} ;
+            data_codearts = {self.data_codearts} ;
             codearts_file = {self.codearts_file}
         )"""
 
@@ -90,9 +90,37 @@ class CodeArtsTemplate:
 
 
 class TemplateController:
-    def __init__(self, codearts:CodeArtsTemplate, jira:JiraTemplate):
+    def __init__(self, final:CodeArtsTemplate, codearts:CodeArtsTemplate, jira:JiraTemplate):
         self.codearts = codearts
         self.jira = jira
+        self.final = final
+
+    def jira_to_codearts(self):
+        if not self.jira.data_jira:
+            self.jira.read_jira_csv()
+        if not codearts.data_codearts:
+            codearts.read_codearts_csv()
+
+        # final e codearts possuem o mesmo header.
+        self.final.header = codearts.header
+
+        # Percorrer o jira, inserindo os respectivos dados no final.
+        for index, i in enumerate(self.jira.data_jira):
+            current_data = {}
+            # Preencher o final.data_codearts com apenas valores vazios.
+            for head in self.final.header:
+                current_data.update({head : ''})
+            # j == header
+            for j in self.jira.data_jira[i]:
+                if j == 'ï»¿Summary':
+                    current_data.update({'Title' : self.jira.data_jira[i][j]})
+                if j == 'Issue Type':
+                    current_data.update({'Type' : self.jira.data_jira[i][j]})
+            
+            self.final.data_codearts[index] = current_data
+
+        
+
 
 def new_table(file_name:str):
     # with open(file_name, mode='w') as file:
@@ -102,16 +130,11 @@ def new_table(file_name:str):
 
 
 if __name__ == '__main__':
-    jira = JiraTemplate(jira_file='jira.csv')
-    jira.read_jira_csv()
-    
+    jira = JiraTemplate(jira_file='jira.csv')    
     codearts = CodeArtsTemplate(codearts_file='codearts.csv')
-    codearts.read_codearts_csv()
+    final = CodeArtsTemplate(codearts_file='final.csv')
+    template_ctl = TemplateController(codearts=codearts, jira=jira, final=final)
 
-    print('\nJIRA:')
-    # i == chave dos dicionarios dentro do dicionario.
-    jira.show_pretty_data()
-
-    print('\nCODEARTS:')
-    codearts.show_pretty_data()
+    template_ctl.jira_to_codearts()
+    print(final)
         
